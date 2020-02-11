@@ -6,4 +6,5 @@
 
     <color name="search_active">#D81B60</color>
     <color name="search_inactive">#D81B60</color>
+    <color name="background">#CECECE</color>
 </resources>
