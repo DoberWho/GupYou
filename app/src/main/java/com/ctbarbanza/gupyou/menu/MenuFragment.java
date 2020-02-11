@@ -1,6 +1,7 @@
 package com.ctbarbanza.gupyou.menu;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +14,8 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.ctbarbanza.gupyou.R;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class MenuFragment extends Fragment {
     public MenuFragment() {
@@ -37,9 +40,35 @@ public class MenuFragment extends Fragment {
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Y", Toast.LENGTH_SHORT).show();
+
+                lanzarEvento(getString(R.string.menu_profile), 0);
             }
         });
+
+        ImageButton btnSearch = view.findViewById(R.id.menu_search_btn);
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                lanzarEvento(getString(R.string.menu_search), 1);
+            }
+        });
+
+        ImageButton btnSettings = view.findViewById(R.id.menu_settings_btn);
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+               lanzarEvento(getString(R.string.menu_search), 2);
+            }
+        });
+    }
+
+    private void lanzarEvento(String titulo, int opcion){
+        MenuEvent event = new MenuEvent();
+        event.optionName    = titulo;
+        event.optionClicked = 0;
+        EventBus.getDefault().post(event);
     }
 
 }

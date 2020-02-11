@@ -7,16 +7,11 @@
     android:background="@drawable/rounded_rect_white"
     android:padding="1dp">
 
-
     <ImageButton
         android:id="@+id/menu_profile_btn"
         style="@style/Btn"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:scaleType="centerInside"
-        android:layout_marginBottom="16dp"
         android:contentDescription="@string/menu_profile"
         android:src="@drawable/ic_user" />
 
@@ -25,11 +20,6 @@
         style="@style/Btn"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:scaleType="fitCenter"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_weight="1"
         android:contentDescription="@string/menu_search"
         android:src="@drawable/ic_search" />
 
@@ -37,12 +27,7 @@
         android:id="@+id/menu_settings_btn"
         style="@style/Btn"
         android:layout_width="wrap_content"
-        android:scaleType="fitCenter"
         android:layout_height="match_parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_weight="1"
         android:contentDescription="@string/menu_settings"
         android:src="@drawable/ic_wheel" />
 </LinearLayout>
