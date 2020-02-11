@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.ctbarbanza.gupyou.menu.MenuEvent;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -18,6 +20,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_main);
+        Logger.addLogAdapter(new AndroidLogAdapter());
+
+        /* Ejemplo de uso de Logger */
+        Logger.d("debug");
+        Logger.e("error");
+        Logger.w("warning");
+        Logger.v("verbose");
+        Logger.i("information");
+        Logger.wtf("What a Terrible Failure");
     }
 
     @Override
