@@ -36,29 +36,27 @@ public class MenuFragment extends Fragment {
     }
 
     private void initButtons(View view) {
-        ImageButton btnProfile = view.findViewById(R.id.menu_profile_btn);
-        btnProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        ImageButton btnProfile  = view.findViewById(R.id.menu_profile_btn);
+        ImageButton btnSearch   = view.findViewById(R.id.menu_search_btn);
+        ImageButton btnSettings = view.findViewById(R.id.menu_settings_btn);
 
-                lanzarEvento(getString(R.string.menu_profile), 0);
-            }
-        });
-
-        ImageButton btnSearch = view.findViewById(R.id.menu_search_btn);
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 lanzarEvento(getString(R.string.menu_search), 1);
             }
         });
 
-        ImageButton btnSettings = view.findViewById(R.id.menu_settings_btn);
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lanzarEvento(getString(R.string.menu_profile), 0);
+            }
+        });
+
         btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                lanzarEvento(getString(R.string.menu_search), 2);
             }
         });
