@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     @Override
     protected void onPause() {
         super.onPause();
@@ -33,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         EventBus.getDefault().register(this);
     }
-
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MenuEvent event) {
