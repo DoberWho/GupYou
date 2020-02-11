@@ -28,4 +28,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     implementation 'com.bytewelder.spork:spork-inject:4.0.0'
+    implementation 'com.gauravk.bubblenavigation:bubblenavigation:1.0.7'
 }
