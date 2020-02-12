@@ -7,8 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.ctbarbanza.gupyou.auth.AuthEvent;
 import com.ctbarbanza.gupyou.auth.GoogleAuthController;
+import com.ctbarbanza.gupyou.menu.MenuEvent;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -22,6 +25,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.orhanobut.logger.Logger;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -50,7 +56,6 @@ public class LoginActivity extends AppCompatActivity {
         Button btnTwitter  =  findViewById(R.id.login_twitter_btn);
         Button btnFacebook =  findViewById(R.id.login_facebook_btn);
 
-
         btnGmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,25 +75,22 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-
-
-
-
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
     }
 
-    private void updateUI(FirebaseUser currentUser) {
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(AuthEvent event) {
+        if (event.isOk){
+            Logger.i("Usuario Logeado");
+        }else{
+            Logger.e("Usuario NO Logeado");
+        }
 
-
-
-    }
-
+    };
 
 
 

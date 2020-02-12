@@ -5,7 +5,6 @@ import android.content.Intent;
 
 import androidx.annotation.NonNull;
 
-import com.ctbarbanza.gupyou.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.ApiException;
@@ -18,6 +17,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.orhanobut.logger.Logger;
 
+import org.greenrobot.eventbus.EventBus;
+
 public class GoogleAuthController {
 
     private FirebaseAuth mAuth;
@@ -25,9 +26,9 @@ public class GoogleAuthController {
     private static final GoogleAuthController instance = new GoogleAuthController();
     private Activity act;
 
-    public static GoogleAuthController init(FirebaseAuth mAuth, Activity act){
+    public static GoogleAuthController init(FirebaseAuth mAuth, Activity act) {
         instance.mAuth = mAuth;
-        instance.act   = act;
+        instance.act = act;
         return instance;
     }
 
@@ -39,6 +40,7 @@ public class GoogleAuthController {
             firebaseAuthWithGoogle(account);
         } catch (ApiException e) {
             Logger.w("Google sign in failed", e);
+            EventBus.getDefault().post(new AuthEvent());
         }
     }
 
@@ -50,14 +52,17 @@ public class GoogleAuthController {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Logger.d( "signInWithCredential:success");
+                            Logger.i("signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+
+                            AuthEvent event = new AuthEvent();
+                            event.isOk = true;
+                            event.user = user;
+                            EventBus.getDefault().post(event);
                         } else {
                             Logger.w("signInWithCredential:failure", task.getException());
-
+                            EventBus.getDefault().post(new AuthEvent());
                         }
-
-                        // ...
                     }
                 });
     }
