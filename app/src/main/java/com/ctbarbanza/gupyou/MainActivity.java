@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         Logger.v("verbose");
         Logger.i("information");
         Logger.wtf("What a Terrible Failure");
+
     }
 
     @Override
@@ -47,4 +48,5 @@ public class MainActivity extends AppCompatActivity {
     public void onMessageEvent(MenuEvent event) {
         Toast.makeText(this, "Clicado: "+event.optionName, Toast.LENGTH_SHORT).show();
     };
+
 }

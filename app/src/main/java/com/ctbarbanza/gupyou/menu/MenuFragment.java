@@ -40,17 +40,17 @@ public class MenuFragment extends Fragment {
         ImageButton btnSearch   = view.findViewById(R.id.menu_search_btn);
         ImageButton btnSettings = view.findViewById(R.id.menu_settings_btn);
 
-        btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                lanzarEvento(getString(R.string.menu_search), 1);
-            }
-        });
-
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 lanzarEvento(getString(R.string.menu_profile), 0);
+            }
+        });
+
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lanzarEvento(getString(R.string.menu_search), 1);
             }
         });
 
