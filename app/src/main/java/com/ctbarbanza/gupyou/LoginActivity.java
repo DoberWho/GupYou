@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.auth.UserInfo;
 import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -79,6 +81,27 @@ public class LoginActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        Logger.i("USER: "+currentUser);
+
+        String arr = "";
+        for (UserInfo info : currentUser.getProviderData()){
+            String user = "Display:"+info.getDisplayName()+"\n\r"
+                    +"Email:"+info.getEmail()+"\n\r"
+                    +"Phone:"+info.getPhoneNumber()+"\n\r"
+                    +"P-ID:"+info.getProviderId()+"\n\r"
+                    +"Photo:"+info.getPhotoUrl()+"\n\r"
+                    +"UID: "+info.getUid();
+            arr += "\n\r========="+user;
+        }
+
+        String user = "Display:"+currentUser.getDisplayName()+"\n\r"
+                +"Email:"+currentUser.getEmail()+"\n\r"
+                +"Phone:"+currentUser.getPhoneNumber()+"\n\r"
+                +"P-ID:"+currentUser.getProviderId()+"\n\r"
+                +"Photo:"+currentUser.getPhotoUrl()+"\n\r"
+                +"ProviderData:"+arr+"\n\r"
+                +"UID: "+currentUser.getUid();
+        Log.i("LOGIN", user);
     }
 
 
