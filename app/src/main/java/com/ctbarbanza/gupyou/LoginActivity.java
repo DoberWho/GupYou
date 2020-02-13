@@ -26,8 +26,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.UserInfo;
+import com.orhanobut.hawk.Hawk;
 import com.orhanobut.logger.Logger;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -102,6 +104,13 @@ public class LoginActivity extends AppCompatActivity {
                 +"ProviderData:"+arr+"\n\r"
                 +"UID: "+currentUser.getUid();
         Log.i("LOGIN", user);
+
+        if (currentUser != null){
+            AuthEvent event = new AuthEvent();
+            event.isOk = true;
+            event.user = currentUser;
+            EventBus.getDefault().post(event);
+        }
     }
 
 
@@ -109,8 +118,15 @@ public class LoginActivity extends AppCompatActivity {
     public void onMessageEvent(AuthEvent event) {
         if (event.isOk){
             Logger.i("Usuario Logeado");
+            Hawk.put("user", event.user);
+
+
+            Intent intent = new Intent(this, PerfilUsuarioActivity.class);
+            startActivity(intent);
+
         }else{
             Logger.e("Usuario NO Logeado");
+            Hawk.delete("user");
         }
 
     };

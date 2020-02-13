@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.ctbarbanza.gupyou.menu.MenuEvent;
+import com.orhanobut.hawk.Hawk;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_main);
         Logger.addLogAdapter(new AndroidLogAdapter());
+        Hawk.init(this).build();
 
         /* Ejemplo de uso de Logger */
         Logger.d("debug");
