@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.ctbarbanza.gupyou.auth.AuthEvent;
 import com.ctbarbanza.gupyou.auth.GoogleAuthController;
 import com.ctbarbanza.gupyou.menu.MenuEvent;
+import com.ctbarbanza.gupyou.models.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -44,6 +46,13 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_login);
+
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new
+                    StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+
         mAuth = FirebaseAuth.getInstance();
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -59,6 +68,30 @@ public class LoginActivity extends AppCompatActivity {
         Button btnGmail    =  findViewById(R.id.login_gmail_btn);
         Button btnTwitter  =  findViewById(R.id.login_twitter_btn);
         Button btnFacebook =  findViewById(R.id.login_facebook_btn);
+
+        btnTwitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                String uid = "USER_UID";
+                DbController.get(uid);
+
+
+                User nUser = new User();
+                nUser.uid       = uid;
+                nUser.instagram = "INSTAGRAM-01";
+                nUser.facebook  = "FACEBOOK-01";
+                nUser.google    = "Google-01";
+                nUser.img       = "IMG--PATH";
+                nUser.name      = "Nombre";
+                nUser.nick      = "Apellidos";
+
+                DbController.saveUser(nUser);
+
+
+            }
+        });
 
         btnGmail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +117,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         Logger.i("USER: "+currentUser);
+        if (currentUser == null){
+            return;
+        }
 
         String arr = "";
         for (UserInfo info : currentUser.getProviderData()){
