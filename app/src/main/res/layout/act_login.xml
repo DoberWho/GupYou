@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="500dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
         android:orientation="horizontal"
@@ -42,4 +42,98 @@
             android:layout_weight="1"
             android:text="Twitter" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/act_login_title"
+        style="@style/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_title"
+        android:layout_marginTop="@dimen/padding_title"
+        android:text="@string/login_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/act_login_instagram"
+        style="@style/social"
+        android:layout_marginStart="@dimen/padding_title"
+        android:layout_marginTop="@dimen/margin_top"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/act_login_title"
+        app:srcCompat="@drawable/social_instagram" />
+
+    <ImageButton
+        android:id="@+id/act_login_facebook"
+        style="@style/social"
+        android:layout_marginStart="@dimen/half_padding_title"
+        android:layout_marginTop="@dimen/margin_top"
+        app:layout_constraintStart_toEndOf="@+id/act_login_instagram"
+        app:layout_constraintTop_toBottomOf="@+id/act_login_title"
+        app:srcCompat="@drawable/social_facebook" />
+
+    <ImageButton
+        android:id="@+id/act_login_linkedin"
+        style="@style/social"
+        android:layout_marginStart="@dimen/half_padding_title"
+        android:layout_marginTop="@dimen/margin_top"
+        app:layout_constraintStart_toEndOf="@+id/act_login_facebook"
+        app:layout_constraintTop_toBottomOf="@+id/act_login_title"
+        app:srcCompat="@drawable/social_linkedin" />
+
+    <ImageButton
+        android:id="@+id/act_login_twitter"
+        style="@style/social"
+        android:layout_marginStart="@dimen/padding_title"
+        android:layout_marginTop="@dimen/half_padding_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/act_login_instagram"
+        app:srcCompat="@drawable/social_twitter" />
+
+    <ImageButton
+        android:id="@+id/act_login_snapchat"
+        style="@style/social"
+        android:layout_marginStart="@dimen/half_padding_title"
+        android:layout_marginTop="@dimen/half_padding_title"
+        app:layout_constraintStart_toEndOf="@id/act_login_twitter"
+        app:layout_constraintTop_toBottomOf="@+id/act_login_instagram"
+        app:srcCompat="@drawable/social_snapchat" />
+
+    <ImageButton
+        android:id="@+id/act_login_twitch"
+        style="@style/social"
+        android:layout_marginStart="@dimen/half_padding_title"
+        android:layout_marginTop="@dimen/half_padding_title"
+        app:layout_constraintStart_toEndOf="@id/act_login_snapchat"
+        app:layout_constraintTop_toBottomOf="@+id/act_login_instagram"
+        app:srcCompat="@drawable/social_twitch" />
+
+    <ImageButton
+        android:id="@+id/act_login_tiktok"
+        style="@style/social"
+        android:layout_marginStart="@dimen/padding_title"
+        android:layout_marginTop="@dimen/half_padding_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/act_login_twitter"
+        app:srcCompat="@drawable/social_tiktok" />
+
+    <ImageButton
+        android:id="@+id/act_login_tinder"
+        style="@style/social"
+        android:layout_marginStart="@dimen/half_padding_title"
+        android:layout_marginTop="@dimen/half_padding_title"
+        app:layout_constraintStart_toEndOf="@id/act_login_tiktok"
+        app:layout_constraintTop_toBottomOf="@+id/act_login_twitter"
+        app:srcCompat="@drawable/social_tinder" />
+
+    <ImageButton
+        android:id="@+id/act_login_youtube"
+        style="@style/social"
+        android:layout_marginStart="@dimen/half_padding_title"
+        android:layout_marginTop="@dimen/half_padding_title"
+        app:layout_constraintStart_toEndOf="@id/act_login_tinder"
+        app:layout_constraintTop_toBottomOf="@+id/act_login_twitter"
+        app:srcCompat="@drawable/social_youtube" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
