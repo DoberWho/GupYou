@@ -5,6 +5,7 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="texto">#525252</color>
+    <color name="texto_claro">#a5a5a5</color>
 
     <color name="search_active">#D81B60</color>
     <color name="search_inactive">#D81B60</color>

@@ -15,6 +15,12 @@
         <item name="android:textColor">@color/texto</item>
     </style>
 
+    <style name="sub_title" parent="title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/texto_claro</item>
+    </style>
+
     <style name="social" parent="Widget.AppCompat.ImageButton">
         <item name="android:background">@android:color/transparent</item>
         <item name="android:scaleType">centerInside</item>
