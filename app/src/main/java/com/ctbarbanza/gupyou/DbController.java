@@ -49,10 +49,7 @@ class DbController {
                 });
     }
 
-    public static void get(String uid) {
-        if (uid == null ||uid.isEmpty()){
-            return;
-        }
+    public static void getAll() {
 
         instance.db.collection("users")
                 .get()
@@ -62,6 +59,30 @@ class DbController {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
+    }
+
+
+    public static void get(String uid) {
+        if (uid == null ||uid.isEmpty()){
+            return;
+        }
+
+        instance.db.collection("users")
+                .whereEqualTo("uid",uid)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() +" Exist:"+document.exists()+ " => " + document.getData());
                             }
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());

@@ -35,6 +35,9 @@ dependencies {
     implementation 'com.orhanobut:logger:2.2.0'
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
     implementation 'com.google.firebase:firebase-firestore:21.2.1'
+    implementation 'com.google.firebase:firebase-auth:17.0.0'
 
     implementation "com.orhanobut:hawk:2.0.1"
+
+    testCompile "org.mockito:mockito-core:2.+"
 }

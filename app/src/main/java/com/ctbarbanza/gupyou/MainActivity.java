@@ -3,7 +3,10 @@ package com.ctbarbanza.gupyou;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.ctbarbanza.gupyou.menu.MenuEvent;
@@ -17,22 +20,25 @@ import org.greenrobot.eventbus.ThreadMode;
 
 public class MainActivity extends AppCompatActivity {
 
+    Context ctx;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_main);
-        Logger.addLogAdapter(new AndroidLogAdapter());
-        Hawk.init(this).build();
 
-        /* Ejemplo de uso de Logger */
-        Logger.d("debug");
-        Logger.e("error");
-        Logger.w("warning");
-        Logger.v("verbose");
-        Logger.i("information");
-        Logger.wtf("What a Terrible Failure");
+        Button boton = findViewById(R.id.login_facebook_btn);
 
+        boton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Aquí el código valido
+            }
+        });
     }
+
+
+
 
     @Override
     protected void onPause() {
