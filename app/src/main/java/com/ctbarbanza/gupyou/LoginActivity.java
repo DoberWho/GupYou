@@ -9,6 +9,7 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.ctbarbanza.gupyou.auth.AuthEvent;
@@ -65,97 +66,63 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initButtons() {
-        Button btnGmail    =  findViewById(R.id.login_gmail_btn);
-        Button btnTwitter  =  findViewById(R.id.login_twitter_btn);
-        Button btnFacebook =  findViewById(R.id.login_facebook_btn);
+        ImageButton btnInstagram = findViewById(R.id.act_login_instagram);
+        ImageButton btnFacebook  =  findViewById(R.id.act_login_facebook);
+        ImageButton btnLinkedin  =  findViewById(R.id.act_login_linkedin);
+        ImageButton btnTwitter   =  findViewById(R.id.act_login_twitter);
+        ImageButton btnSnapchat  =  findViewById(R.id.act_login_snapchat);
+        ImageButton btnTwitch    =  findViewById(R.id.act_login_twitch);
+        ImageButton btnTiktok    =  findViewById(R.id.act_login_tiktok);
+        ImageButton btnTinder    =  findViewById(R.id.act_login_tinder);
+        ImageButton btnGmail     = findViewById(R.id.act_login_youtube);
 
-        btnTwitter.setOnClickListener(new View.OnClickListener() {
+
+
+        View.OnClickListener loginListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
                 String uid = "USER_UID";
                 DbController.get(uid);
 
-
                 User nUser = new User();
-                nUser.uid       = uid;
+                nUser.uid = uid;
                 nUser.instagram = "INSTAGRAM-01";
-                nUser.facebook  = "FACEBOOK-01";
-                nUser.google    = "Google-01";
-                nUser.img       = "IMG--PATH";
-                nUser.name      = "Nombre";
-                nUser.nick      = "Apellidos";
+                nUser.facebook = "FACEBOOK-01";
+                nUser.google = "Google-01";
+                nUser.img = "IMG--PATH";
+                nUser.name = "Nombre";
+                nUser.nick = "Apellidos";
 
                 DbController.saveUser(nUser);
-
+                sendEventLogin(nUser);
 
             }
-        });
+        };
 
-        btnGmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-                startActivityForResult(signInIntent, GOOGLE_LOGIN_ACT_RESULCODE);
-            }
-        });
+        btnInstagram.setOnClickListener(loginListener);
+        btnFacebook.setOnClickListener(loginListener);
+        btnLinkedin.setOnClickListener(loginListener);
+        btnTwitter.setOnClickListener(loginListener);
+        btnSnapchat.setOnClickListener(loginListener);
+        btnTwitch.setOnClickListener(loginListener);
+        btnTiktok.setOnClickListener(loginListener);
+        btnTinder.setOnClickListener(loginListener);
+        btnGmail.setOnClickListener(loginListener);
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == GOOGLE_LOGIN_ACT_RESULCODE) {
-            GoogleAuthController.init(mAuth, this).googleLogin(data);
-        }
+    private void sendEventLogin(User user){
+        AuthEvent event = new AuthEvent();
+        event.isOk = true;
+        event.user = user;
+        EventBus.getDefault().post(event);
     }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        Logger.i("USER: "+currentUser);
-        if (currentUser == null){
-            return;
-        }
-
-        String arr = "";
-        for (UserInfo info : currentUser.getProviderData()){
-            String user = "Display:"+info.getDisplayName()+"\n\r"
-                    +"Email:"+info.getEmail()+"\n\r"
-                    +"Phone:"+info.getPhoneNumber()+"\n\r"
-                    +"P-ID:"+info.getProviderId()+"\n\r"
-                    +"Photo:"+info.getPhotoUrl()+"\n\r"
-                    +"UID: "+info.getUid();
-            arr += "\n\r========="+user;
-        }
-
-        String user = "Display:"+currentUser.getDisplayName()+"\n\r"
-                +"Email:"+currentUser.getEmail()+"\n\r"
-                +"Phone:"+currentUser.getPhoneNumber()+"\n\r"
-                +"P-ID:"+currentUser.getProviderId()+"\n\r"
-                +"Photo:"+currentUser.getPhotoUrl()+"\n\r"
-                +"ProviderData:"+arr+"\n\r"
-                +"UID: "+currentUser.getUid();
-        Log.i("LOGIN", user);
-
-        if (currentUser != null){
-            AuthEvent event = new AuthEvent();
-            event.isOk = true;
-            event.user = currentUser;
-            EventBus.getDefault().post(event);
-        }
-    }
-
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(AuthEvent event) {
         if (event.isOk){
             Logger.i("Usuario Logeado");
             Hawk.put("user", event.user);
-
 
             Intent intent = new Intent(this, PerfilUsuarioActivity.class);
             startActivity(intent);
