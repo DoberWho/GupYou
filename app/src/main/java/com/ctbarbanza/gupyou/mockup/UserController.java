@@ -166,4 +166,12 @@ public class UserController {
 
         return items;
     }
+
+    public void addComentario(String uid, Commentario com){
+        this.comentarios.get(uid).add(com);
+    }
+
+    public void addValoracion(String uid, Valoracion item){
+        this.valoraciones.get(uid).add(item);
+    }
 }
