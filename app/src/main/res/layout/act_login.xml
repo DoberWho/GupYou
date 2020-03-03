@@ -32,6 +32,7 @@
         android:id="@+id/act_login_instagram"
         style="@style/social"
         android:layout_marginStart="@dimen/padding_title"
+        android:contentDescription="@string/social_instagram"
         android:layout_marginTop="@dimen/margin_top"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/act_login_title"
@@ -41,6 +42,7 @@
         android:id="@+id/act_login_facebook"
         style="@style/social"
         android:layout_marginStart="@dimen/half_padding_title"
+        android:contentDescription="@string/social_facebook"
         android:layout_marginTop="@dimen/margin_top"
         app:layout_constraintStart_toEndOf="@+id/act_login_instagram"
         app:layout_constraintTop_toBottomOf="@+id/act_login_title"
@@ -51,6 +53,7 @@
         style="@style/social"
         android:layout_marginStart="@dimen/half_padding_title"
         android:layout_marginTop="@dimen/margin_top"
+        android:contentDescription="@string/social_linkedin"
         app:layout_constraintStart_toEndOf="@+id/act_login_facebook"
         app:layout_constraintTop_toBottomOf="@+id/act_login_title"
         app:srcCompat="@drawable/social_linkedin" />
@@ -60,6 +63,7 @@
         style="@style/social"
         android:layout_marginStart="@dimen/padding_title"
         android:layout_marginTop="@dimen/half_padding_title"
+        android:contentDescription="@string/social_twitter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/act_login_instagram"
         app:srcCompat="@drawable/social_twitter" />
@@ -69,6 +73,7 @@
         style="@style/social"
         android:layout_marginStart="@dimen/half_padding_title"
         android:layout_marginTop="@dimen/half_padding_title"
+        android:contentDescription="@string/social_snapchat"
         app:layout_constraintStart_toEndOf="@id/act_login_twitter"
         app:layout_constraintTop_toBottomOf="@+id/act_login_instagram"
         app:srcCompat="@drawable/social_snapchat" />
@@ -78,6 +83,7 @@
         style="@style/social"
         android:layout_marginStart="@dimen/half_padding_title"
         android:layout_marginTop="@dimen/half_padding_title"
+        android:contentDescription="@string/social_twitch"
         app:layout_constraintStart_toEndOf="@id/act_login_snapchat"
         app:layout_constraintTop_toBottomOf="@+id/act_login_instagram"
         app:srcCompat="@drawable/social_twitch" />
@@ -87,6 +93,7 @@
         style="@style/social"
         android:layout_marginStart="@dimen/padding_title"
         android:layout_marginTop="@dimen/half_padding_title"
+        android:contentDescription="@string/social_tiktok"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/act_login_twitter"
         app:srcCompat="@drawable/social_tiktok" />
@@ -96,6 +103,7 @@
         style="@style/social"
         android:layout_marginStart="@dimen/half_padding_title"
         android:layout_marginTop="@dimen/half_padding_title"
+        android:contentDescription="@string/social_tinder"
         app:layout_constraintStart_toEndOf="@id/act_login_tiktok"
         app:layout_constraintTop_toBottomOf="@+id/act_login_twitter"
         app:srcCompat="@drawable/social_tinder" />
@@ -105,6 +113,7 @@
         style="@style/social"
         android:layout_marginStart="@dimen/half_padding_title"
         android:layout_marginTop="@dimen/half_padding_title"
+        android:contentDescription="@string/social_youtube"
         app:layout_constraintStart_toEndOf="@id/act_login_tinder"
         app:layout_constraintTop_toBottomOf="@+id/act_login_twitter"
         app:srcCompat="@drawable/social_youtube" />
