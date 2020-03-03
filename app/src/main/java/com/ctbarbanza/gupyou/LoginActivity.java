@@ -115,7 +115,10 @@ public class LoginActivity extends AppCompatActivity {
         AuthEvent event = new AuthEvent();
         event.isOk = true;
         event.user = user;
-        EventBus.getDefault().post(event);
+        //EventBus.getDefault().post(event);
+        Hawk.put("user", event.user);
+        Intent intent = new Intent(this, PerfilUsuarioActivity.class);
+        startActivity(intent);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
