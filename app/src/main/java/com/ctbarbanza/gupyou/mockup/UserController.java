@@ -11,21 +11,30 @@ import java.util.Map;
 import java.util.Random;
 
 public class UserController {
+
+
+    private User currentUser;
+
     private UserController(){
         this.generateDatos();
+        this.setCurrentUser();
     }
     private static final UserController instance =  new UserController();
     public static UserController init(){
-
         return instance;
     }
 
-    private HashMap<String, User>        users        = new HashMap<String, User>();
+    private HashMap<String, User> users = new HashMap<String, User>();
     private HashMap<String, List<Commentario>> comentarios  = new HashMap<String, List<Commentario>>();
     private HashMap<String, List<Valoracion>>  valoraciones = new HashMap<String, List<Valoracion>>();
 
-    private void generateDatos(){
+    private void setCurrentUser(){
+        Random random = new Random();
+        User[] values = (User[]) users.values().toArray(); 
+        this.currentUser = values[random.nextInt(values.length)];
+    }
 
+    private void generateDatos(){
         this.generateUsers();
         this.generateCommentarios();
         this.generateValoraciones();
@@ -102,5 +111,59 @@ public class UserController {
         String image = "ic_user";
 
         return user;
+    }
+
+
+    public User getCurrentUser(){
+        return this.currentUser;
+    }
+    
+    public List<Commentario> getComentarios(String uid){
+        if (this.comentarios.containsKey(uid)){
+            return this.comentarios.get(uid);
+        }
+        return new ArrayList<>();
+    }
+
+    public List<Valoracion> getValoraciones(String uid){
+        if (this.valoraciones.containsKey(uid)){
+            return this.valoraciones.get(uid);
+        }
+        return new ArrayList<>();
+    }
+
+    public List<User> searchUsers(String uid, String nick, String name, String facebook, String google, String twitter, String instagram){
+
+        ArrayList<User> items = new ArrayList<>();
+
+        for (Map.Entry<String, User> entry : this.users.entrySet()) {
+            User user = entry.getValue();
+
+            boolean cUid = user.uid.equals(uid);
+            boolean cNick = user.nick.contains(nick);
+            boolean cName = user.name.contains(name);
+            boolean cFb = user.facebook.contains(facebook);
+            boolean cG = user.google.contains(google);
+            boolean cTw = user.twitter.contains(twitter);
+            boolean cIns = user.instagram.contains(instagram);
+
+            if (cUid || cNick || cName || cFb || cG || cTw || cIns){
+                items.add(user);
+                continue;
+            }
+        }
+        
+        return items;
+    }
+
+    public List<User> getAllUsers(){
+        ArrayList<User> items = new ArrayList<>();
+
+        for (Map.Entry<String, User> entry : this.users.entrySet()) {
+            User user = entry.getValue();
+            items.add(user);
+        }
+
+        return items;
     }
 }
