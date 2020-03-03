@@ -27,14 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_main);
 
-        Button boton = findViewById(R.id.login_facebook_btn);
 
-        boton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Aquí el código valido
-            }
-        });
     }
 
 
