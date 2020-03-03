@@ -18,7 +18,9 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_perfil_usuario);
 
-        user = Hawk.get("user");
+        if (Hawk.contains("user")){
+            user = Hawk.get("user");
+        }
 
         DbController.get(user.getUid());
 
