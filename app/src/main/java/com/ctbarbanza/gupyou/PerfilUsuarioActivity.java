@@ -5,13 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.ctbarbanza.gupyou.models.User;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 import com.orhanobut.hawk.Hawk;
 
 public class PerfilUsuarioActivity extends AppCompatActivity {
 
-    private FirebaseUser user;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +20,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
             user = Hawk.get("user");
         }
 
-        DbController.get(user.getUid());
+        DbController.get(user.uid);
 
 
         updateProfileData();
@@ -31,13 +29,13 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
     private void updateProfileData() {
 
         User nUser = new User();
-        nUser.uid       = this.user.getUid();
+        nUser.uid       = this.user.uid;
         nUser.instagram = "INSTAGRAM-01";
         nUser.facebook  = "FACEBOOK-01";
-        nUser.google    = this.user.getDisplayName();
-        nUser.img       = this.user.getPhotoUrl().getPath();
-        nUser.name      = this.user.getDisplayName();
-        nUser.nick      = this.user.getDisplayName();
+        nUser.google    = this.user.google;
+        nUser.img       = this.user.img;
+        nUser.name      = this.user.name;
+        nUser.nick      = this.user.nick;
 
         DbController.saveUser(nUser);
 
