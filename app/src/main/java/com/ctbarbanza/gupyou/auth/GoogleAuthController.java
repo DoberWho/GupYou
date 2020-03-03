@@ -46,24 +46,6 @@ public class GoogleAuthController {
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
 
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(act, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Logger.i("signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
 
-                            AuthEvent event = new AuthEvent();
-                            event.isOk = true;
-                            event.user = user;
-                            EventBus.getDefault().post(event);
-                        } else {
-                            Logger.w("signInWithCredential:failure", task.getException());
-                            EventBus.getDefault().post(new AuthEvent());
-                        }
-                    }
-                });
     }
 }
