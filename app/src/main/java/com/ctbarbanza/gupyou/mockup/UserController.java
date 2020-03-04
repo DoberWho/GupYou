@@ -30,8 +30,9 @@ public class UserController {
 
     private void setCurrentUser(){
         Random random = new Random();
-        User[] values = (User[]) users.values().toArray(); 
-        this.currentUser = values[random.nextInt(values.length)];
+        Object[] values = (Object[]) users.values().toArray();
+        Object obj = values[random.nextInt(values.length)];
+        this.currentUser = (User)obj;
     }
 
     private void generateDatos(){
@@ -117,7 +118,8 @@ public class UserController {
     public User getCurrentUser(){
         return this.currentUser;
     }
-    
+
+
     public List<Commentario> getComentarios(String uid){
         if (this.comentarios.containsKey(uid)){
             return this.comentarios.get(uid);
